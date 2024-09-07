@@ -9,11 +9,11 @@ const getRandomColor = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-const statistics = ({ data }) => {
+const statistics = ({ data, title }) => {
   return (
     <>
       <section className={styles.statistics}>
-        <h2 className={styles.title}>Upload stats</h2>
+        <h2 className={styles.title}>{title}</h2>
 
         <ul className={styles.statlist}>
           {data.map((item, id) => (
@@ -33,7 +33,14 @@ const statistics = ({ data }) => {
 };
 
 statistics.propTypes = {
-  data: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default statistics;

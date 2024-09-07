@@ -11,7 +11,7 @@ const Card = ({ user }) => {
           <p className={styles.location}>{user.location}</p>
         </div>
 
-        <ul class={styles.stats}>
+        <ul className={styles.stats}>
           <li>
             <span className={styles.label}>Followers</span>
             <span className={styles.quantity}>{user.stats.followers}</span>
@@ -31,7 +31,17 @@ const Card = ({ user }) => {
 };
 
 Card.propTypes = {
-  user: PropTypes.string,
+  user: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    stats: PropTypes.shape({
+      followers: PropTypes.number.isRequired,
+      views: PropTypes.number.isRequired,
+      likes: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Card;
